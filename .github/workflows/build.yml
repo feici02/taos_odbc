@@ -15,7 +15,7 @@ jobs:
 
     - name: install dependencies
       run: |
-        apt install flex bison unixodbc unixodbc-dev
+        sudo apt install flex bison unixodbc unixodbc-dev
 
     - name: compile
       run: |
