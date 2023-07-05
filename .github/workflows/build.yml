@@ -19,16 +19,21 @@ jobs:
         
     - name: install TDengine client
       run: |
+        pwd && \
         wget https://www.taosdata.com/assets-download/3.0/TDengine-client-3.0.6.0-Linux-x64.tar.gz && \
         tar zxvf TDengine-client-3.0.6.0-Linux-x64.tar.gz && \
         cd TDengine-client-3.0.6.0 && \
         ./install_client.sh
 
-    - name: compile
+    - name: compile ODBC driver
       run: |
+        pwd && \
         rm -rf debug && \
         cmake -B debug -DCMAKE_BUILD_TYPE=Debug && \
-        cmake --build debug && \
-        cmake --install debug && \
-        cmake --build debug --target install_templates && \
-        echo -=Done=-
+        cmake --build debug
+
+    - name: upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: libtaos_odbc.so
+        path: debug/src/libtaos_odbc.so
