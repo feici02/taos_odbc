@@ -15,7 +15,14 @@ jobs:
 
     - name: install dependencies
       run: |
-        sudo apt install flex bison unixodbc unixodbc-dev
+        sudo apt install wget flex bison unixodbc unixodbc-dev
+        
+    - name: install TDengine client
+      run: |
+        wget https://www.taosdata.com/assets-download/3.0/TDengine-client-3.0.6.0-Linux-x64.tar.gz && \
+        tar zxvf TDengine-client-3.0.6.0-Linux-x64.tar.gz && \
+        cd TDengine-client-3.0.6.0 && \
+        ./install_client.sh
 
     - name: compile
       run: |
