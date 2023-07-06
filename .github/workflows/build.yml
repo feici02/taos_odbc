@@ -30,7 +30,7 @@ jobs:
         pwd && \
         rm -rf debug && \
         cmake -B debug -DCMAKE_BUILD_TYPE=Debug && \
-        cmake --build debug
+        cmake --build debug --target taos_odbc
 
     - name: upload artifacts
       uses: actions/upload-artifact@v3
